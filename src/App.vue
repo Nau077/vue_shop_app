@@ -1,16 +1,45 @@
 <template>
-<v-app>
-    <v-navigation-drawer app temporary></v-navigation-drawer>
+  <v-app>
+    <v-navigation-drawer
+      app
+      temporary
+      v-model="drawer"
+    >
+      <v-list>
+        <v-list-tile
+          v-for="link of links"
+          :key="link.title"
+          :to="link.url"
+        >
+          <v-list-tile-action>
+            <v-icon>{{link.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="link.title"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
 
-    <v-toolbar app dark color="pramary">
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar app dark color="blue">
+      <v-toolbar-side-icon
+        @click="drawer = !drawer"
+        class="hidden-md-and-up"
+      ></v-toolbar-side-icon>
       <v-toolbar-title>Ad application</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Link One</v-btn>
+        <v-btn
+          v-for="link in links"
+          :key="link.title"
+          :to="link.url"
+          flat
+        >
+          <v-icon left>{{link.icon}}</v-icon>
+          {{link.title}}
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
-
 
     <v-content>
       <router-view></router-view>
@@ -18,13 +47,19 @@
   </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<script>
+export default {
+    data () {
+        return {
+            drawer: false,
+            links: [
+                { title: 'Login', icon: 'lock', url: '/login' },
+                { title: 'Registration', icon: 'face', url: '/registration' },
+                { title: 'Orders', icon: 'bookmark_border', url: '/orders' },
+                { title: 'New ad', icon: 'note_add', url: '/new' },
+                { title: 'My ads', icon: 'list', url: '/list' }
+            ]
+        };
+    }
+};
+</script>
