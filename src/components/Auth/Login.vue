@@ -9,19 +9,19 @@
               </v-toolbar>
               <v-card-text>
                 <v-form v-model="valid" ref="form" validation>
-                  <v-text-field 
-                  prepend-icon="person" 
-                  name="login" 
-                  label="Login" 
+                  <v-text-field
+                  prepend-icon="person"
+                  name="login"
+                  label="Login"
                   type="text"
                   v-model="email"
                   :rules="emailRules"
                   >
                   </v-text-field>
-                  <v-text-field 
-                  prepend-icon="lock" 
-                  name="password" 
-                  label="Password" 
+                  <v-text-field
+                  prepend-icon="lock"
+                  name="password"
+                  label="Password"
                   type="password"
                   :counter="6"
                   v-model="password"
@@ -32,7 +32,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn 
+                <v-btn
                 color="blue"
                 @click="onSubmit"
                 :disabled="!valid"
@@ -45,35 +45,35 @@
 </template>
 
 <script>
-const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 export default {
     data () {
         return {
-        email: '',
-        password: '',
-        valid: false,
-        emailRules: [
-          v => !!v || 'E-mail is required',
-          v => emailRegex.test(v) || 'E-mail must be valid'
-        ],
-        passwordRules: [
-          v => !!v || 'Password is required',
-          v => (v && v.length >= 6) || 'Password must be equal or more than 6 characters'
-        ]
-      }
+            email: '',
+            password: '',
+            valid: false,
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => emailRegex.test(v) || 'E-mail must be valid'
+            ],
+            passwordRules: [
+                v => !!v || 'Password is required',
+                v => (v && v.length >= 6) || 'Password must be equal or more than 6 characters'
+            ]
+        };
     },
-        methods: {
-      onSubmit () {
-        if (this.$refs.form.validate()) {
-          const user = {
-            email: this.email,
-            password: this.password
-          }
+    methods: {
+        onSubmit () {
+            if (this.$refs.form.validate()) {
+                const user = {
+                    email: this.email,
+                    password: this.password
+                };
 
-          console.log(user)
+                console.log(user);
+            }
         }
-      }
     }
 };
 </script>
