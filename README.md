@@ -1,4 +1,5 @@
-# add-app
+# add app on Vue.js and FireBase backend (for auth/some part of crud operations)
+# приложение на vue.js и firebase в качестве бэкенда
 
 ## Project setup
 ```
