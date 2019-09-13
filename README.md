@@ -1,4 +1,4 @@
-# adv-project
+# add-app
 
 ## Project setup
 ```
