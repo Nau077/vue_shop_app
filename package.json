@@ -2,6 +2,7 @@
   "name": "adv-project",
   "version": "0.1.0",
   "private": true,
+  "author": "Roman Tolokontsev",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -9,9 +10,14 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-rc.1",
+    "firebase": "^5.9.2",
+    "shelljs": "^0.8.3",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.5.7"
+    "vuetify": "^1.5.7",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
