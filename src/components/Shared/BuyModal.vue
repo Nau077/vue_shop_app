@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     props: ['ad'],
     data () {
@@ -71,6 +72,7 @@ export default {
         };
     },
     methods: {
+        ...mapActions(['createOrder']),
         onCancel () {
             this.name = '';
             this.phone = '';
@@ -79,7 +81,7 @@ export default {
         onSave () {
             if (this.name !== '' && this.phone !== '') {
                 this.localLoading = true;
-                this.$store.dispatch('createOrder', {
+                this.createOrder({
                     name: this.name,
                     phone: this.phone,
                     adId: this.ad.id,

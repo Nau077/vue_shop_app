@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     props: ['ad'],
     data () {
@@ -57,6 +59,10 @@ export default {
         };
     },
     methods: {
+        ...mapActions({
+            updateAd: 'updateAd'
+        }
+        ),
         onCancel () {
             this.editedDescription = this.ad.description;
             this.editedTitle = this.ad.title;
@@ -64,7 +70,7 @@ export default {
         },
         onSave () {
             if (this.editedDescription !== '' && this.editedTitle !== '') {
-                this.$store.dispatch('updateAd', {
+                this.updateAd({
                     title: this.editedTitle,
                     description: this.editedDescription,
                     id: this.ad.id

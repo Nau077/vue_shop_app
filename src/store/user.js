@@ -1,7 +1,7 @@
 import * as fb from 'firebase';
 
 class User {
-    constructor(id) {
+    constructor (id) {
         this.id = id;
     }
 }
@@ -11,12 +11,12 @@ export default {
         user: null
     },
     mutations: {
-        setUser(state, payload) {
+        setUser (state, payload) {
             state.user = payload;
         }
     },
     actions: {
-        async registerUser({ commit }, { email, password }) {
+        async registerUser ({ commit }, { email, password }) {
             commit('clearError');
             commit('setLoading', true);
             try {
@@ -29,7 +29,7 @@ export default {
                 throw error;
             }
         },
-        async loginUser({ commit }, { email, password }) {
+        async loginUser ({ commit }, { email, password }) {
             commit('clearError');
             commit('setLoading', true);
             try {
@@ -42,20 +42,16 @@ export default {
                 throw error;
             }
         },
-        // autoLoginUser ({commit}, payload) {
-        //   console.log(payload)
-        //   commit('setUser', new User(payload.uid))
-        // },
-        logoutUser({ commit }) {
+        logoutUser ({ commit }) {
             fb.auth().signOut();
             commit('setUser', null);
         }
     },
     getters: {
-        user(state) {
+        user (state) {
             return state.user;
         },
-        isUserLoggedIn(state) {
+        isUserLoggedIn (state) {
             return state.user !== null;
         }
     }

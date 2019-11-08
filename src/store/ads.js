@@ -1,7 +1,7 @@
 import * as fb from 'firebase';
 
 class Ad {
-    constructor(title, description, ownerId, imageSrc = '', promo = false, id = null) {
+    constructor (title, description, ownerId, imageSrc = '', promo = false, id = null) {
         this.title = title;
         this.description = description;
         this.ownerId = ownerId;
@@ -16,13 +16,13 @@ export default {
         ads: []
     },
     mutations: {
-        createAd(state, payload) {
+        createAd (state, payload) {
             state.ads.push(payload);
         },
-        loadAds(state, payload) {
+        loadAds (state, payload) {
             state.ads = payload;
         },
-        updateAd(state, { title, description, id }) {
+        updateAd (state, { title, description, id }) {
             const ad = state.ads.find(a => {
                 return a.id === id;
             });
@@ -32,7 +32,7 @@ export default {
         }
     },
     actions: {
-        async createAd({ commit, getters }, payload) {
+        async createAd ({ commit, getters }, payload) {
             commit('clearError');
             commit('setLoading', true);
 
@@ -69,7 +69,7 @@ export default {
                 throw error;
             }
         },
-        async fetchAds({ commit }) {
+        async fetchAds ({ commit }) {
             commit('clearError');
             commit('setLoading', true);
 
@@ -94,7 +94,7 @@ export default {
                 throw error;
             }
         },
-        async updateAd({ commit }, { title, description, id }) {
+        async updateAd ({ commit }, { title, description, id }) {
             commit('clearError');
             commit('setLoading', true);
 
@@ -115,27 +115,27 @@ export default {
                 throw error;
             }
         },
-        makeLoadingDefault({ commit }) {
+        makeLoadingDefault ({ commit }) {
             commit('setLoading', false);
         }
     },
     getters: {
-        ads(state) {
+        ads (state) {
             return state.ads;
         },
-        promoAds(state) {
+        promoAds (state) {
             return state.ads.filter(ad => {
                 return ad.promo;
             });
         },
-        currentAds(state, getters) {
+        currentAds (state, getters) {
             if (state.user) {
                 return state.ads.filter(ad => ad.ownerId === state.user.id);
             } else {
                 return null;
             }
         },
-        adById(state) {
+        adById (state) {
             return adId => {
                 return state.ads.find(ad => ad.id === adId);
             };

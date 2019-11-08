@@ -32,16 +32,18 @@
 
 <script>
 import EditAdModal from './EditAdModal';
+import { mapGetters } from 'vuex';
 
 export default {
     props: ['id'],
     computed: {
+        ...mapGetters(['loading']),
         ad () {
             const id = this.id;
             return this.$store.getters.adById(id);
         },
         loading () {
-            return this.$store.getters.loading;
+            return this.loading;
         },
         isOwner () {
             return this.ad.ownerId === this.$store.getters.user.id;

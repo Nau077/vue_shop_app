@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     data () {
         return {
@@ -86,6 +87,10 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            createAd: 'createAd'
+        }
+        ),
         createAd () {
             if (this.$refs.form.validate() && this.image) {
                 const ad = {
@@ -95,7 +100,7 @@ export default {
                     image: this.image
                 };
 
-                this.$store.dispatch('createAd', ad)
+                this.createAd(ad)
                     .then(() => {
                         this.$router.push('/list');
                     })

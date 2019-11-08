@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 export default {
@@ -67,6 +68,10 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            setError: 'setError'
+        }
+        ),
         onSubmit () {
             if (this.$refs.form.validate()) {
                 const user = {
@@ -84,7 +89,7 @@ export default {
     },
     created () {
         if (this.$route.query['loginError']) {
-            this.$store.dispatch('setError', 'Please log in to access this page.');
+            this.setError('Please log in to access this page.');
         }
     }
 };

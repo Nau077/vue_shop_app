@@ -52,17 +52,20 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     computed: {
         // fixme
         // this is needed to fix / надо вынести фильтрацию в стор
+        ...mapGetters(['loading']),
         currentAds () {
             const userId = this.$store.getters.user.id;
             const myAds = this.$store.getters.ads;
             return myAds.filter(ad => ad.ownerId === userId);
         },
         loading () {
-            return this.$store.getters.loading;
+            return this.loading;
         }
     }
 };

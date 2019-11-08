@@ -52,6 +52,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
 export default {
@@ -81,6 +83,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['registerUser']),
         onSubmit () {
             if (this.$refs.form.validate()) {
                 const user = {
@@ -88,7 +91,7 @@ export default {
                     password: this.password
                 };
 
-                this.$store.dispatch('registerUser', user)
+                this.registerUser(user)
                     .then(() => {
                         this.$router.push('/');
                     })
